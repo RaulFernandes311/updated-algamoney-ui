@@ -14,14 +14,12 @@ import { DropdownModule } from 'primeng/dropdown';
 import { NgxCurrencyModule } from 'ngx-currency';
 
 import { LancamentosPesquisaComponent } from './lancamentos-pesquisa/lancamentos-pesquisa.component';
-import { LancamentosGridComponent } from './lancamentos-grid/lancamentos-grid.component';
 import { LancamentoCadastroComponent } from './lancamento-cadastro/lancamento-cadastro.component';
 import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   declarations: [
     LancamentoCadastroComponent,
-    LancamentosGridComponent,
     LancamentosPesquisaComponent
   ],
   imports: [
