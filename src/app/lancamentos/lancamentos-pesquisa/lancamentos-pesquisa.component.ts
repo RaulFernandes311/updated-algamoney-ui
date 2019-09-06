@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { LancamentoService } from './../lancamento.service';
+import { LancamentoService, LancamentoFiltro } from './../lancamento.service';
 
 @Component({
   selector: 'app-lancamentos-pesquisa',
@@ -10,6 +10,11 @@ import { LancamentoService } from './../lancamento.service';
 export class LancamentosPesquisaComponent implements OnInit {
 
   descricao: string;
+  dataVencimentoInicio: Date;
+  dataVencimentoFim: Date;
+
+  dataVencimentoInicioString: string;
+
   lancamentos = [];
 
   cols = [
@@ -27,19 +32,34 @@ export class LancamentosPesquisaComponent implements OnInit {
   }
 
   pesquisar() {
-    this.lancamentoService.pesquisar({descricao: this.descricao})
+
+    const filtro: LancamentoFiltro = {
+      descricao: this.descricao,
+      dataVencimentoInicio: this.dataVencimentoInicio,
+      dataVencimentoFim: this.dataVencimentoFim
+    };
+
+    this.lancamentoService.pesquisar(filtro)
       .then(lancamentos => {
         this.lancamentos = lancamentos;
       });
   }
 
-  getHeaderColumnClasses(col: any) {
-    if (col.header === 'Vencimento' || col.header === 'Pagamento') {
+  getHeaderColumnClasses(header: string) {
+    if (header === 'Vencimento' || header === 'Pagamento') {
       return 'col-data-header';
     }
-    if (col.header === 'Valor') {
+    if (header === 'Valor') {
       return 'col-valor-header';
     }
+  }
+
+  getBodyColumnClasses(header: string, tipo: string) {
+    return header === 'Valor' ?
+      tipo === 'DESPESA' ?
+        ['redClass', 'col-valor-content'] : ['blueClass', 'col-valor-content'] :
+      header === 'Vencimento' || header === 'Pagamento' ?
+        'col-data-content' : null;
   }
 
 }

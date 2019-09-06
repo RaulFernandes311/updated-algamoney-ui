@@ -14,11 +14,14 @@
       </div>
 
       <div class="ui-g-12">
-        <label style="display: block">Vencimento</label>
-        <input pInputText type="text" style="width: 95px">
+        <label style="display: block">Vencimento {{ dataVencimentoInicioString }}</label>
+        <p-calendar dateFormat="dd-mm-yy" [inputStyle]="{ width: '95px' }"
+          name="vencimentoInicio" [(ngModel)]="dataVencimentoInicio"></p-calendar>
 
         <label style="margin: 0 10px">até</label>
-        <input pInputText type="text" style="width: 95px">
+        <p-calendar dateFormat="dd-mm-yy" [inputStyle]="{ width: '95px' }"
+          name="vencimentoFim" [(ngModel)]="dataVencimentoFim"></p-calendar>
+
       </div>
 
       <div class="ui-g-12">
@@ -36,7 +39,7 @@
         [rows]="4" [responsive]="true">
         <ng-template pTemplate="header" let-columns>
           <tr>
-            <th *ngFor="let col of columns" [ngClass]="getHeaderColumnClasses(col)">
+            <th *ngFor="let col of columns" [ngClass]="getHeaderColumnClasses(col.header)">
               {{ col.header }}
             </th>
             <th class="col-acoes"></th>
@@ -46,11 +49,7 @@
         <ng-template pTemplate="body" let-rowData let-columns="columns">
           <tr>
             <td *ngFor="let col of columns"
-              [ngClass]="col.header === 'Valor' ?
-                          rowData.tipo === 'DESPESA' ?
-                            ['redClass', 'col-valor-content'] : ['blueClass', 'col-valor-content'] :
-                          col.header === 'Vencimento' || col.header === 'Pagamento' ?
-                            'col-data-content' : null">
+              [ngClass]="getBodyColumnClasses(col.header, rowData.tipo)">
               <span class="ui-column-title" style="color: black">{{col.header}}</span>
               <span *ngIf="col.header === 'Pessoa' || col.header === 'Descricao'">
                 {{rowData[col.field]}}
@@ -72,6 +71,10 @@
                 pTooltip="Excluir" tooltipPosition="top"></button>
             </td>
           </tr>
+        </ng-template>
+
+        <ng-template pTemplate="emptymessage">
+            Nenhum lançamento encontrado
         </ng-template>
 
       </p-table>
