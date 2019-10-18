@@ -39,7 +39,7 @@
         [value]="lancamentos" [responsive]="true"
         [paginator]="true" [rows]="filtro.itensPorPagina"
         [lazy]="true" [totalRecords]="totalRegistros"
-        (onLazyLoad)="aoMudarPagina($event)">
+        (onLazyLoad)="aoMudarPagina($event)" #tabela>
         <ng-template pTemplate="header" let-columns>
           <tr>
             <th *ngFor="let col of columns" [ngClass]="getHeaderColumnClasses(col.header)">
@@ -71,7 +71,8 @@
               <a pButton icon="pi pi-pencil" style="margin-right: 5px !important"
                 pTooltip="Editar" tooltipPosition="top"></a>
               <button pButton icon="pi pi-trash" style="margin-right: 0px !important"
-                pTooltip="Excluir" tooltipPosition="top"></button>
+                pTooltip="Excluir" tooltipPosition="top"
+                (click)="excluir(rowData)"></button>
             </td>
           </tr>
         </ng-template>
