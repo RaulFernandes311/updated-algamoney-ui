@@ -4,13 +4,17 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
+import { ToastModule } from 'primeng/toast';
+import { MessageService } from 'primeng/api';
+
 import { LancamentosModule } from './lancamentos/lancamentos.module';
 import { PessoasModule } from './pessoas/pessoas.module';
 
-import { AppComponent } from './app.component';
-import { CoreModule } from './core/core.module';
 import { LancamentoService } from './lancamentos/lancamento.service';
 import { PessoaService } from './pessoas/pessoa.service';
+
+import { AppComponent } from './app.component';
+import { CoreModule } from './core/core.module';
 
 @NgModule({
   declarations: [
@@ -26,11 +30,14 @@ import { PessoaService } from './pessoas/pessoa.service';
     CoreModule,
 
     LancamentosModule,
-    PessoasModule
+    PessoasModule,
+
+    ToastModule
   ],
   providers: [
     LancamentoService,
-    PessoaService
+    PessoaService,
+    MessageService
   ],
   bootstrap: [AppComponent]
 })
