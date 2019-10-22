@@ -1,11 +1,16 @@
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { ToastService } from './shared/toast.service';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, LOCALE_ID } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { registerLocaleData } from '@angular/common';
+
+import localePt from '@angular/common/locales/pt';
 
 import { ToastModule } from 'primeng/toast';
-import { MessageService } from 'primeng/api';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { MessageService, ConfirmationService } from 'primeng/api';
 
 import { LancamentosModule } from './lancamentos/lancamentos.module';
 import { PessoasModule } from './pessoas/pessoas.module';
@@ -15,6 +20,8 @@ import { PessoaService } from './pessoas/pessoa.service';
 
 import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
+
+registerLocaleData(localePt);
 
 @NgModule({
   declarations: [
@@ -32,12 +39,16 @@ import { CoreModule } from './core/core.module';
     LancamentosModule,
     PessoasModule,
 
-    ToastModule
+    ToastModule,
+    ConfirmDialogModule
   ],
   providers: [
     LancamentoService,
     PessoaService,
-    MessageService
+    MessageService,
+    ToastService,
+    ConfirmationService,
+    { provide: LOCALE_ID, useValue: 'pt-BR' }
   ],
   bootstrap: [AppComponent]
 })

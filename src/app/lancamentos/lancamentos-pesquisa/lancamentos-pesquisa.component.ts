@@ -1,6 +1,7 @@
+import { ToastService } from './../../shared/toast.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
 
-import { LazyLoadEvent, MessageService } from 'primeng/api';
+import { LazyLoadEvent, MessageService, ConfirmationService } from 'primeng/api';
 
 import { LancamentoService, LancamentoFiltro } from './../lancamento.service';
 
@@ -31,7 +32,8 @@ export class LancamentosPesquisaComponent implements OnInit {
 
   constructor(
     private lancamentoService: LancamentoService,
-    private toast: MessageService
+    private toast: ToastService,
+    private confirmation: ConfirmationService
   ) { }
 
   ngOnInit() {  }
@@ -51,18 +53,28 @@ export class LancamentosPesquisaComponent implements OnInit {
     this.pesquisar(pagina);
   }
 
+  confirmarExclusao(lancamento: any) {
+    this.confirmation.confirm({
+      message: 'Tem certeza que deseja excluír este lançamento?',
+      accept: () => {
+        this.excluir(lancamento);
+      }
+    });
+  }
+
   excluir(lancamento: any) {
     this.lancamentoService.excluir(lancamento.codigo)
       .then(() => {
         this.grid.reset();
-
-        this.toast.add({
-          severity: 'success',
-          summary: 'Sucesso',
-          detail: 'Lançamento excluído com sucesso'
-        });
-
+        this.toast.success('Lançamento excluído com sucesso');
       });
+  }
+
+  toastf() {
+    this.toast.success('Lançamento excluído com sucesso');
+    this.toast.info('');
+    this.toast.warn('');
+    this.toast.error('');
   }
 
   getHeaderColumnClasses(header: string) {

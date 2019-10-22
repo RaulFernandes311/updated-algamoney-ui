@@ -72,7 +72,7 @@
                 pTooltip="Editar" tooltipPosition="top"></a>
               <button pButton icon="pi pi-trash" style="margin-right: 0px !important"
                 pTooltip="Excluir" tooltipPosition="top"
-                (click)="excluir(rowData)"></button>
+                (click)="confirmarExclusao(rowData)"></button>
             </td>
           </tr>
         </ng-template>
@@ -87,6 +87,10 @@
 
     <div class="ui-g-12">
       <a pButton label="Novo Lançamento"></a>
+    </div>
+
+    <div class="ui-g-12">
+      <button pButton (click)="toastf()" label="Toast"></button>
     </div>
 
   </div>
