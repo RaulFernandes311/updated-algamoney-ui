@@ -8,6 +8,7 @@ export class PessoaFiltro {
 }
 
 export class Pessoa {
+  codigo: number;
   nome: string;
   cidade: string;
   estado: string;
@@ -59,6 +60,15 @@ export class PessoaService {
       });
   }
 
+  excluir(codigo: number): Promise<void> {
+    const headers = new HttpHeaders()
+      .append('Authorization', 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==');
+
+    return this.http.delete(`${this.pessoasUrl}/${codigo}`, { headers })
+      .toPromise()
+      .then(() => null);
+  }
+
   getPessoas(response: any) {
     const pessoas = [ ];
     let pessoa: Pessoa;
@@ -68,6 +78,7 @@ export class PessoaService {
     content.forEach(element => {
       pessoa = new Pessoa();
 
+      pessoa.codigo = element.codigo;
       pessoa.nome = element.nome;
       pessoa.cidade = element['endereco'].cidade;
       pessoa.estado = element['endereco'].estado;

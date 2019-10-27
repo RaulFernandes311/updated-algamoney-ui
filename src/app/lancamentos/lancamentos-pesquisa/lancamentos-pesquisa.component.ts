@@ -1,7 +1,7 @@
 import { ToastService } from './../../shared/toast.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
 
-import { LazyLoadEvent, MessageService, ConfirmationService } from 'primeng/api';
+import { LazyLoadEvent, ConfirmationService } from 'primeng/api';
 
 import { LancamentoService, LancamentoFiltro } from './../lancamento.service';
 
@@ -75,10 +75,10 @@ export class LancamentosPesquisaComponent implements OnInit {
   }
 
   toastf() {
-    this.toast.success('Lançamento excluído com sucesso');
-    this.toast.info('');
-    this.toast.warn('');
-    this.toast.error('');
+    this.toast.success('Teste do success');
+    this.toast.info('Teste do info');
+    this.toast.warn('Teste do warn');
+    this.toast.error('Teste do error');
   }
 
   getHeaderColumnClasses(header: string) {
