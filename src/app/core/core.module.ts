@@ -15,6 +15,7 @@ import { LancamentoService } from '../lancamentos/lancamento.service';
 import { ToastService } from '../shared/toast.service';
 
 import { NavbarComponent } from './navbar/navbar.component';
+import { CategoriaService } from '../categorias/categoria.service';
 
 registerLocaleData(localePt);
 
@@ -35,6 +36,8 @@ registerLocaleData(localePt);
   providers: [
     LancamentoService,
     PessoaService,
+    CategoriaService,
+
     MessageService,
     ErrorHandlerService,
 

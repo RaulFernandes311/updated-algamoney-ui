@@ -1,5 +1,5 @@
-import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 
 export class PessoaFiltro {
   nome: string;
@@ -28,7 +28,7 @@ export class PessoaService {
     const headers = new HttpHeaders()
       .append('Authorization', 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==');
 
-    return this.http.get(`${this.pessoasUrl}`, { headers })
+    return this.http.get(this.pessoasUrl, { headers })
       .toPromise()
       .then(response => response['content']);
   }
@@ -45,18 +45,18 @@ export class PessoaService {
       params = params.set('nome', filtro.nome);
     }
 
-    return this.http.get(`${this.pessoasUrl}`, { headers, params })
+    return this.http.get(this.pessoasUrl, { headers, params })
       .toPromise()
       .then(response => {
-        return this.getPessoas(response);
-        /*const pessoas = response['content'];
+        // return this.getPessoas(response);
+        const pessoas = response['content'];
 
         const resultado = {
           pessoas,
           total: response['totalElements']
         };
 
-        return resultado;*/
+        return resultado;
       });
   }
 

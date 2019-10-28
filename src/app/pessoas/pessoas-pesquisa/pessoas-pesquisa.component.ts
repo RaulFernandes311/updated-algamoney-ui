@@ -1,11 +1,10 @@
-import { Pessoa } from './../pessoa.service';
-import { ToastService } from './../../shared/toast.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
 
 import { LazyLoadEvent, ConfirmationService } from 'primeng/components/common/api';
 import { Table } from 'primeng/table';
 
 import { PessoaFiltro, PessoaService } from '../pessoa.service';
+import { ToastService } from './../../shared/toast.service';
 import { ErrorHandlerService } from 'src/app/core/error-handler.service';
 
 @Component({
@@ -58,7 +57,7 @@ export class PessoasPesquisaComponent implements OnInit {
     });
   }
 
-  excluir(pessoa: Pessoa) {
+  excluir(pessoa: any) {
     this.pessoaService.excluir(pessoa.codigo)
       .then(() => {
         this.grid.reset();
@@ -67,7 +66,7 @@ export class PessoasPesquisaComponent implements OnInit {
       .catch(erro => this.errorHandler.handle(erro));
   }
 
-  alternarStatus(pessoa: Pessoa) {
+  alternarStatus(pessoa: any) {
     const novoStatus = !pessoa.ativo;
 
     this.pessoaService.alternarStatus(pessoa.codigo, novoStatus)

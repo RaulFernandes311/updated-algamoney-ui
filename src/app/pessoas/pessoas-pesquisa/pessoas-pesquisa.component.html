@@ -38,8 +38,11 @@
           <tr>
             <td *ngFor="let col of columns">
               <span class="ui-column-title">{{col.header}}</span>
-              <span [hidden]="col.header === 'Status' ? true : false">
+              <span [hidden]="col.header === 'Nome' ? false : true">
                 {{rowData[col.field]}}
+              </span>
+              <span [hidden]="col.header === 'Status' || col.header === 'Nome' ? true : false">
+                {{rowData['endereco'][col.field]}}
               </span>
               <span [hidden]="col.header === 'Status' ? false : true">
                 <a href="javascript:;"
