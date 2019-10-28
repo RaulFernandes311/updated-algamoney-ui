@@ -1,3 +1,4 @@
+import { Pessoa } from './../pessoa.service';
 import { ToastService } from './../../shared/toast.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
 
@@ -57,11 +58,24 @@ export class PessoasPesquisaComponent implements OnInit {
     });
   }
 
-  excluir(pessoa: any) {
+  excluir(pessoa: Pessoa) {
     this.pessoaService.excluir(pessoa.codigo)
       .then(() => {
         this.grid.reset();
-        this.toast.success('Pessoa excluída com sucesso');
+        this.toast.success('Pessoa excluída com sucesso!');
+      })
+      .catch(erro => this.errorHandler.handle(erro));
+  }
+
+  alternarStatus(pessoa: Pessoa) {
+    const novoStatus = !pessoa.ativo;
+
+    this.pessoaService.alternarStatus(pessoa.codigo, novoStatus)
+      .then(() => {
+        const acao = novoStatus ? 'ativada' : 'desativada';
+
+        pessoa.ativo = novoStatus;
+        this.toast.success(`Pessoa ${acao} com sucesso!`);
       })
       .catch(erro => this.errorHandler.handle(erro));
   }

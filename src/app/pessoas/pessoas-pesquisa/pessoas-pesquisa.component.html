@@ -44,7 +44,8 @@
               <span [hidden]="col.header === 'Status' ? false : true">
                 <a href="javascript:;"
                   [pTooltip]="rowData[col.field] ? 'Desativar' : 'Ativar'"
-                    tooltipPosition="top" class="statusAtivo">
+                    tooltipPosition="top"
+                    class="statusAtivo" (click)="alternarStatus(rowData)">
                   {{ rowData[col.field] ? 'Ativo' : 'Inativo' }}
                 </a>
               </span>
