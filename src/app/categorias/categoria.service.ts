@@ -15,8 +15,7 @@ export class CategoriaService {
       .append('Authorization', 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==');
 
     return this.http.get(this.categoriasUrl, { headers })
-      .toPromise()
-      .then(response => response['content']);
+      .toPromise();
   }
 
 }
