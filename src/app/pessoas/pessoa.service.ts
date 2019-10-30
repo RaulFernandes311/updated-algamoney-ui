@@ -7,14 +7,6 @@ export class PessoaFiltro {
   itensPorPagina = 4;
 }
 
-export class Pessoa {
-  codigo: number;
-  nome: string;
-  cidade: string;
-  estado: string;
-  ativo: boolean;
-}
-
 @Injectable({
   providedIn: 'root'
 })
@@ -48,7 +40,6 @@ export class PessoaService {
     return this.http.get(this.pessoasUrl, { headers, params })
       .toPromise()
       .then(response => {
-        // return this.getPessoas(response);
         const pessoas = response['content'];
 
         const resultado = {
@@ -77,32 +68,5 @@ export class PessoaService {
     return this.http.put(`${this.pessoasUrl}/${codigo}/ativo`, ativo, { headers })
       .toPromise()
       .then(() => null);
-  }
-
-  getPessoas(response: any) {
-    const pessoas = [ ];
-    let pessoa: Pessoa;
-
-    const content = response['content'];
-
-    content.forEach(element => {
-      pessoa = new Pessoa();
-
-      pessoa.codigo = element.codigo;
-      pessoa.nome = element.nome;
-      pessoa.cidade = element['endereco'].cidade;
-      pessoa.estado = element['endereco'].estado;
-      pessoa.ativo = element.ativo;
-
-      pessoas.push(pessoa);
-
-    });
-
-    const resultado = {
-      pessoas,
-      total: response['totalElements']
-    };
-
-    return resultado;
   }
 }
