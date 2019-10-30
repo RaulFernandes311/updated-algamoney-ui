@@ -9,7 +9,7 @@ export class Categoria {
 
 export class Lancamento {
   codigo: number;
-  tipo = 'RECEITA';
+  tipo: string;
   descricao: string;
   dataVencimento: Date;
   dataPagamento: Date;

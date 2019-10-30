@@ -1,3 +1,5 @@
+import { ToastService } from './../../shared/toast.service';
+import { LancamentoService } from './../lancamento.service';
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 
@@ -25,8 +27,10 @@ export class LancamentoCadastroComponent implements OnInit {
   lancamento = new Lancamento();
 
   constructor(
+    private lancamentoService: LancamentoService,
     private categoriaService: CategoriaService,
     private pessoaService: PessoaService,
+    private toast: ToastService,
     private errorHandler: ErrorHandlerService
   ) { }
 
@@ -36,7 +40,14 @@ export class LancamentoCadastroComponent implements OnInit {
   }
 
   salvar(form: FormControl) {
-    console.log(this.lancamento);
+    this.lancamentoService.adicionar(this.lancamento)
+      .then(() => {
+        this.toast.success('Lançamento adicionado com sucesso!');
+
+        form.reset();
+        this.lancamento = new Lancamento();
+      })
+      .catch(erro => this.errorHandler.handle(erro));
   }
 
   carregarCategorias() {
