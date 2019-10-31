@@ -74,13 +74,6 @@ export class LancamentosPesquisaComponent implements OnInit {
       .catch(erro => this.errorHandler.handle(erro));
   }
 
-  toastf() {
-    this.toast.success('Teste do success');
-    this.toast.info('Teste do info');
-    this.toast.warn('Teste do warn');
-    this.toast.error('Teste do error');
-  }
-
   getHeaderColumnClasses(header: string) {
     if (header === 'Vencimento' || header === 'Pagamento') {
       return 'col-data-header';
