@@ -63,11 +63,14 @@
             </td>
           </tr>
         </ng-template>
+        <ng-template pTemplate="emptymessage">
+          Nenhuma pessoa encontrada
+        </ng-template>
       </p-table>
     </div>
 
     <div class="ui-g-12">
-      <button pButton type="submit" label="Nova Pessoa"></button>
+      <button pButton label="Nova Pessoa" routerLink="/pessoas/nova"></button>
     </div>
   </div>
 </div>
