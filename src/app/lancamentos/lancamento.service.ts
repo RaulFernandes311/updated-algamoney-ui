@@ -1,3 +1,5 @@
+import { LancamentoCadastroComponent } from './lancamento-cadastro/lancamento-cadastro.component';
+import { Pessoa, Categoria } from 'src/app/core/model';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 
@@ -56,6 +58,22 @@ export class LancamentoService {
       });
   }
 
+  buscarPorCodigo(codigo: number): Promise<any> {
+    const headers = new HttpHeaders()
+      .append('Authorization', 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==')
+      .append('Content-Type', 'application/json');
+
+    return this.http.get(`${this.lancamentosUrl}/${codigo}`, { headers })
+      .toPromise()
+      .then(response => {
+        const lancamento = response as Lancamento;
+
+        this.converterStringsParaDatas([lancamento]);
+
+        return lancamento;
+      });
+  }
+
   excluir(codigo: number): Promise<void> {
     const headers = new HttpHeaders()
       .append('Authorization', 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==');
@@ -70,9 +88,36 @@ export class LancamentoService {
       .append('Authorization', 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==')
       .append('Content-Type', 'application/json');
 
-    return this.http.post<Lancamento>(
-        this.lancamentosUrl, lancamento, { headers })
+    return this.http.post<Lancamento>(this.lancamentosUrl, lancamento, { headers })
       .toPromise();
   }
 
+  atualizar(lancamento: Lancamento): Promise<Lancamento> {
+    const headers = new HttpHeaders()
+      .append('Authorization', 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==')
+      .append('Content-Type', 'application/json');
+
+    return this.http.put<Lancamento>(
+      `${this.lancamentosUrl}/${lancamento.codigo}`, lancamento, { headers })
+      .toPromise()
+      .then(response => {
+        const lancamentoAlterado = response as Lancamento;
+
+        this.converterStringsParaDatas([lancamentoAlterado]);
+
+        return lancamentoAlterado;
+      });
+  }
+
+  private converterStringsParaDatas(lancamentos: Lancamento[]) {
+    lancamentos.forEach(lancamento => {
+      lancamento.dataVencimento = moment(lancamento.dataVencimento,
+        'YYYY-MM-DD').toDate();
+
+      if (lancamento.dataPagamento) {
+        lancamento.dataPagamento = moment(lancamento.dataPagamento,
+          'YYYY-MM-DD').toDate();
+      }
+    });
+  }
 }
