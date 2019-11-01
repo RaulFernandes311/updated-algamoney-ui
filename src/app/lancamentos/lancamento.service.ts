@@ -58,7 +58,7 @@ export class LancamentoService {
       });
   }
 
-  buscarPorCodigo(codigo: number): Promise<any> {
+  buscarPorCodigo(codigo: number): Promise<Lancamento> {
     const headers = new HttpHeaders()
       .append('Authorization', 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==')
       .append('Content-Type', 'application/json');
