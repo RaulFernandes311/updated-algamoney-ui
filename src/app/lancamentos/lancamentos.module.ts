@@ -41,9 +41,6 @@ import { SharedModule } from '../shared/shared.module';
 
     NgxCurrencyModule
   ],
-  exports: [
-    LancamentoCadastroComponent,
-    LancamentosPesquisaComponent
-  ]
+  exports: [ ]
 })
 export class LancamentosModule { }
