@@ -10,8 +10,6 @@ export class ErrorHandlerService {
 
   constructor(private toast: ToastService) { }
 
-  // Como o curso fez:
-
   handle(errorResponse: any) {
     let msg: string;
 

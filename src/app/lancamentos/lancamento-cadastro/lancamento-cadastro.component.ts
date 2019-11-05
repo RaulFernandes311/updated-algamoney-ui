@@ -40,7 +40,7 @@ export class LancamentoCadastroComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.title.setTitle('Cadastro de Lançamentos');
+    this.title.setTitle('Novo Lançamento');
 
     const codigoLancamento = this.route.snapshot.params.codigo;
 

@@ -18,6 +18,7 @@ import { ToastService } from '../shared/toast.service';
 import { NavbarComponent } from './navbar/navbar.component';
 import { CategoriaService } from '../categorias/categoria.service';
 import { PaginaNaoEncontradaComponent } from './pagina-nao-encontrada.component';
+import { Title } from '@angular/platform-browser';
 
 registerLocaleData(localePt);
 
@@ -39,15 +40,17 @@ registerLocaleData(localePt);
     ConfirmDialogModule
   ],
   providers: [
-    LancamentoService,
-    PessoaService,
-    CategoriaService,
+    // LancamentoService,
+    // PessoaService,
+    // CategoriaService,
+
+    // ErrorHandlerService,
 
     MessageService,
-    ErrorHandlerService,
-
-    ToastService,
+    // ToastService,
     ConfirmationService,
+
+    // Title,
     { provide: LOCALE_ID, useValue: 'pt-BR' }
   ]
 })
