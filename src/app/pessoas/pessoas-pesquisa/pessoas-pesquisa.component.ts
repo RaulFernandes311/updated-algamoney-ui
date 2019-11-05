@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 
 import { LazyLoadEvent, ConfirmationService } from 'primeng/components/common/api';
 import { Table } from 'primeng/table';
@@ -33,10 +34,13 @@ export class PessoasPesquisaComponent implements OnInit {
     private pessoaService: PessoaService,
     private confirmation: ConfirmationService,
     private toast: ToastService,
-    private errorHandler: ErrorHandlerService
+    private errorHandler: ErrorHandlerService,
+    private title: Title
     ) { }
 
-  ngOnInit() {  }
+  ngOnInit() {
+    this.title.setTitle('Pesquisa de Pessoas');
+   }
 
   pesquisar(pagina = 0) {
     this.filtro.pagina = pagina;
