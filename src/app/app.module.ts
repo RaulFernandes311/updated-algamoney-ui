@@ -20,14 +20,17 @@ import { AppComponent } from './app.component';
     BrowserAnimationsModule,
     BrowserModule,
     FormsModule,
-    AppRoutingModule,
 
     HttpClientModule,
 
     CoreModule,
 
     LancamentosModule,
-    PessoasModule
+    PessoasModule,
+
+    AppRoutingModule
+    // Obs: Este import deve ser importado somente após de LancamentosModule e PessoasModule,
+    // pois estes são os módulos que têm as rotas por módulo.
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,4 +1,3 @@
-import { RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -16,6 +15,8 @@ import { NgxCurrencyModule } from 'ngx-currency';
 
 import { LancamentosPesquisaComponent } from './lancamentos-pesquisa/lancamentos-pesquisa.component';
 import { LancamentoCadastroComponent } from './lancamento-cadastro/lancamento-cadastro.component';
+
+import { LancamentosRoutingModule } from './lancamentos-routing.module';
 import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
@@ -26,7 +27,6 @@ import { SharedModule } from '../shared/shared.module';
   imports: [
     CommonModule,
     FormsModule,
-    RouterModule,
 
     SharedModule,
 
@@ -39,7 +39,9 @@ import { SharedModule } from '../shared/shared.module';
     SelectButtonModule,
     DropdownModule,
 
-    NgxCurrencyModule
+    NgxCurrencyModule,
+
+    LancamentosRoutingModule
   ],
   exports: [ ]
 })
