@@ -1,12 +1,13 @@
-import { ToastService } from './../../shared/toast.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
 
 import { LazyLoadEvent, ConfirmationService } from 'primeng/api';
 
 import { LancamentoService, LancamentoFiltro } from './../lancamento.service';
+import { ToastService } from './../../shared/toast.service';
 
 import { Table } from 'primeng/table';
 import { ErrorHandlerService } from 'src/app/core/error-handler.service';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-lancamentos-pesquisa',
@@ -33,12 +34,15 @@ export class LancamentosPesquisaComponent implements OnInit {
 
   constructor(
     private lancamentoService: LancamentoService,
+    private errorHandler: ErrorHandlerService,
     private toast: ToastService,
     private confirmation: ConfirmationService,
-    private errorHandler: ErrorHandlerService
+    private title: Title
   ) { }
 
-  ngOnInit() {  }
+  ngOnInit() {
+    this.title.setTitle('Pesquisa de Lançamentos');
+  }
 
   pesquisar(pagina = 0) {
     this.filtro.pagina = pagina;
