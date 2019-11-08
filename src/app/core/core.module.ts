@@ -15,6 +15,7 @@ import { PessoaService } from '../pessoas/pessoa.service';
 import { LancamentoService } from '../lancamentos/lancamento.service';
 import { ToastService } from '../shared/toast.service';
 import { AuthService } from './../seguranca/auth.service';
+import { JwtHelperService } from '@auth0/angular-jwt';
 
 import { NavbarComponent } from './navbar/navbar.component';
 import { CategoriaService } from '../categorias/categoria.service';
@@ -48,6 +49,7 @@ registerLocaleData(localePt);
     // ErrorHandlerService,
 
     // AuthService,
+    // JwtHelperService
 
     MessageService,
     // ToastService,

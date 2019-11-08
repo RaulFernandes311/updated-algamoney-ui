@@ -8,6 +8,7 @@ import { ButtonModule } from 'primeng/button';
 import { LoginFormComponent } from './login-form/login-form.component';
 
 import { SharedModule } from './../shared/shared.module';
+import { JwtModule } from '@auth0/angular-jwt';
 
 import { SegurancaRoutingModule } from './seguranca-routing.module';
 
@@ -23,6 +24,14 @@ import { SegurancaRoutingModule } from './seguranca-routing.module';
 
     InputTextModule,
     ButtonModule,
+
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: () => {
+          return '';
+        }
+      }
+    }),
 
     SegurancaRoutingModule
   ]
