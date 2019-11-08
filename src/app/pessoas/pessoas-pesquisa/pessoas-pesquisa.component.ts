@@ -49,7 +49,8 @@ export class PessoasPesquisaComponent implements OnInit {
       .then(resultado => {
         this.totalRegistros = resultado.total;
         this.pessoas = resultado.pessoas;
-      });
+      })
+      .catch(erro => this.errorHandler.handle(erro));
   }
 
   confirmarExclusao(pessoa: any) {

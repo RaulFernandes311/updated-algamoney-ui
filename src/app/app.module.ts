@@ -8,6 +8,7 @@ import { AppRoutingModule } from './app-routing.module';
 
 import { LancamentosModule } from './lancamentos/lancamentos.module';
 import { PessoasModule } from './pessoas/pessoas.module';
+import { SegurancaModule } from './seguranca/seguranca.module';
 import { CoreModule } from './core/core.module';
 
 import { AppComponent } from './app.component';
@@ -24,13 +25,14 @@ import { AppComponent } from './app.component';
     HttpClientModule,
 
     CoreModule,
+    SegurancaModule,
 
     LancamentosModule,
     PessoasModule,
 
     AppRoutingModule
-    // Obs: Este import deve ser importado somente após de LancamentosModule e PessoasModule,
-    // pois estes são os módulos que têm as rotas por módulo.
+    // Obs: Este import deve ser importado somente após
+    // os módulos que têm as rotas por módulo.
   ],
   providers: [],
   bootstrap: [AppComponent]
