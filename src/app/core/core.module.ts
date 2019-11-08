@@ -14,6 +14,7 @@ import { ErrorHandlerService } from './error-handler.service';
 import { PessoaService } from '../pessoas/pessoa.service';
 import { LancamentoService } from '../lancamentos/lancamento.service';
 import { ToastService } from '../shared/toast.service';
+import { AuthService } from './../seguranca/auth.service';
 
 import { NavbarComponent } from './navbar/navbar.component';
 import { CategoriaService } from '../categorias/categoria.service';
@@ -45,6 +46,8 @@ registerLocaleData(localePt);
     // CategoriaService,
 
     // ErrorHandlerService,
+
+    // AuthService,
 
     MessageService,
     // ToastService,
