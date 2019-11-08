@@ -10,26 +10,17 @@
 
       <div class="ui-g-12">
         <input pInputText type="email" name="email" placeholder="E-mail"
-          ngModel required email #usuario="ngModel">
-
-        <app-message [control]="usuario" error="required"
-          text="Informe um endereço de E-mail"></app-message>
-
-        <app-message [control]="usuario" error="email"
-          text="Informe um endereço de E-mail válido"></app-message>
+          ngModel required email #usuario>
       </div>
 
       <div class="ui-g-12">
         <input pInputText type="password" name="senha" placeholder="Senha"
-          ngModel required #senha="ngModel">
-
-        <app-message [control]="senha" error="required"
-          text="Informe uma senha"></app-message>
+          ngModel required #senha>
       </div>
 
       <div class="ui-g-12">
         <button pButton type="submit" label="Login" [disabled]="f.invalid"
-          (click)="login(usuario.value, senha.value)"></button>
+          (click)="login(usuario.value, senha.value); senha.value = '';"></button>
       </div>
     </div>
 

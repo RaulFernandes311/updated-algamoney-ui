@@ -28,11 +28,16 @@ export class AuthService {
     return this.http.post(this.oauthTokenURL, body, { headers })
       .toPromise()
       .then(response => {
-        console.log(response);
         this.armazenarToken(response['access_token']);
       })
       .catch(response => {
-        console.log(response);
+        if (response.status === 400) {
+          if (response.error.error === 'invalid_grant') {
+            return Promise.reject('Usuário ou senha inválidos!');
+          }
+        }
+
+        return Promise.reject(response);
       });
   }
 
