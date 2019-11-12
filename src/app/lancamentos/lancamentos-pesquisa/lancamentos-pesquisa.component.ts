@@ -1,13 +1,13 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 
 import { LazyLoadEvent, ConfirmationService } from 'primeng/api';
+import { Table } from 'primeng/table';
 
 import { LancamentoService, LancamentoFiltro } from './../lancamento.service';
 import { ToastService } from './../../shared/toast.service';
-
-import { Table } from 'primeng/table';
+import { AuthService } from './../../seguranca/auth.service';
 import { ErrorHandlerService } from 'src/app/core/error-handler.service';
-import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-lancamentos-pesquisa',
@@ -34,6 +34,7 @@ export class LancamentosPesquisaComponent implements OnInit {
 
   constructor(
     private lancamentoService: LancamentoService,
+    private auth: AuthService,
     private errorHandler: ErrorHandlerService,
     private toast: ToastService,
     private confirmation: ConfirmationService,
