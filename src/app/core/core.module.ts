@@ -20,6 +20,7 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 import { NavbarComponent } from './navbar/navbar.component';
 import { CategoriaService } from '../categorias/categoria.service';
 import { PaginaNaoEncontradaComponent } from './pagina-nao-encontrada.component';
+import { NaoAutorizadoComponent } from './nao-autorizado.component';
 import { Title } from '@angular/platform-browser';
 
 registerLocaleData(localePt);
@@ -27,7 +28,8 @@ registerLocaleData(localePt);
 @NgModule({
   declarations: [
     NavbarComponent,
-    PaginaNaoEncontradaComponent
+    PaginaNaoEncontradaComponent,
+    NaoAutorizadoComponent
   ],
   imports: [
     CommonModule,
