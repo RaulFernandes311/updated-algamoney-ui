@@ -4,9 +4,7 @@ import { Router } from '@angular/router';
 
 import { ToastService } from './../shared/toast.service';
 
-export class NotAuthenticatedError {
-
-}
+export class NotAuthenticatedError {  }
 
 @Injectable({
   providedIn: 'root'

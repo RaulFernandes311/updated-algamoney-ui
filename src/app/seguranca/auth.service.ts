@@ -1,6 +1,5 @@
-import { Injectable } from '@angular/core';
-
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Injectable } from '@angular/core';
 
 import { JwtHelperService } from '@auth0/angular-jwt';
 
@@ -10,6 +9,7 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 export class AuthService {
 
   oauthTokenURL = 'http://localhost:8080/oauth/token';
+  tokensRevokeUrl = 'http://localhost:8080/tokens/revoke';
   jwtPayload: any;
 
   constructor(
@@ -63,6 +63,21 @@ export class AuthService {
 
         return Promise.resolve(null);
       });
+  }
+
+  logout() {
+    return this.http.delete(this.tokensRevokeUrl, { withCredentials: true })
+    .toPromise()
+    .then(() => {
+      console.log('RefreshToken apagado');
+      this.limparAccessToken();
+    });
+  }
+
+  limparAccessToken() {
+    console.log('AccessToken apagado');
+    localStorage.removeItem('token');
+    this.jwtPayload = null;
   }
 
   isAccessTokenInvalido() {
