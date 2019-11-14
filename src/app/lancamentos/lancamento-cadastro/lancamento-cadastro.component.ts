@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { FormControl, NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 
@@ -56,7 +56,7 @@ export class LancamentoCadastroComponent implements OnInit {
     return Boolean(this.lancamento.codigo);
   }
 
-  salvar(form: FormControl) {
+  salvar(form: NgForm) {
     if (this.editando) {
       this.atualizarLancamento(form);
     } else {
@@ -64,7 +64,7 @@ export class LancamentoCadastroComponent implements OnInit {
     }
   }
 
-  adicionarLancamento(form: FormControl) {
+  adicionarLancamento(form: NgForm) {
     this.lancamentoService.adicionar(this.lancamento)
       .then(lancamentoAdicionado => {
         this.toast.success('Lançamento adicionado com sucesso!');
@@ -76,7 +76,7 @@ export class LancamentoCadastroComponent implements OnInit {
       .catch(erro => this.errorHandler.handle(erro));
   }
 
-  atualizarLancamento(form: FormControl) {
+  atualizarLancamento(form: NgForm) {
     this.lancamentoService.atualizar(this.lancamento)
       .then(lancamento => {
         this.toast.success('Lançamento atualizado com sucesso!');
@@ -114,7 +114,7 @@ export class LancamentoCadastroComponent implements OnInit {
     .catch(erro => this.errorHandler.handle(erro));
   }
 
-  novo(form: FormControl) {
+  novo(form: NgForm) {
     form.reset();
     this.lancamento = new Lancamento();
 

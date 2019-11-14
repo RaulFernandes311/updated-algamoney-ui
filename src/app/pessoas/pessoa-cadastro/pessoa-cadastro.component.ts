@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { FormControl, NgForm } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 
@@ -51,7 +51,7 @@ export class PessoaCadastroComponent implements OnInit {
       .catch(erro => this.errorHandler.handle(erro));
   }
 
-  salvar(form: FormControl) {
+  salvar(form: NgForm) {
     if (this.editando) {
       this.atualizarPessoa(form);
     } else {
@@ -59,7 +59,7 @@ export class PessoaCadastroComponent implements OnInit {
     }
   }
 
-  adicionarPessoa(form: FormControl) {
+  adicionarPessoa(form: NgForm) {
     this.pessoaService.adicionar(this.pessoa)
       .then(lancamentoAdicionado => {
         this.toast.success('Pessoa adicionada com sucesso!');
@@ -71,7 +71,7 @@ export class PessoaCadastroComponent implements OnInit {
       .catch(erro => this.errorHandler.handle(erro));
   }
 
-  atualizarPessoa(form: FormControl) {
+  atualizarPessoa(form: NgForm) {
     this.pessoaService.atualizar(this.pessoa)
       .then(pessoaAtualizada => {
         this.toast.success('Pessoa atualizada com sucesso!');
@@ -83,7 +83,7 @@ export class PessoaCadastroComponent implements OnInit {
       .catch(erro => this.errorHandler.handle(erro));
   }
 
-  novo(form: FormControl) {
+  novo(form: NgForm) {
     form.reset();
     this.pessoa = new Pessoa();
 

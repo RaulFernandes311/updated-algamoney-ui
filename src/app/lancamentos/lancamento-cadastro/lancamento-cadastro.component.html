@@ -23,7 +23,7 @@
         </div>
 
         <div class="ui-g-6 ui-md-3 ui-fluid" *ngIf="tipo.valid">
-          <label>{{ tipo.valueAccessor.value === 'RECEITA' ? 'Recebimento' : 'Pagamento' }}</label>
+          <label>{{ tipo.value === 'RECEITA' ? 'Recebimento' : 'Pagamento' }}</label>
           <p-calendar dateFormat="dd/mm/yy" #pagamento="ngModel"
           [(ngModel)]="lancamento.dataPagamento" name="pagamento"></p-calendar>
         </div>
@@ -44,7 +44,7 @@
       </div>
 
       <div class="ui-g-12 ui-md-3 ui-fluid">
-        <label>Valor {{ value }}</label>
+        <label>Valor</label>
         <input pInputText type="text" placeholder="0,00" currencyMask
           [options]="{ prefix: '', thousands: '.', decimal: ',', allowNegative: false, nullable: true }"
           name="valor" #valor="ngModel" [(ngModel)]="lancamento.valor" required>
