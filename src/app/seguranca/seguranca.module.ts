@@ -5,16 +5,18 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { JwtModule } from '@auth0/angular-jwt';
 
-import { MoneyHttpInterceptor } from './money-http-interceptor';
-
 import { InputTextModule } from 'primeng/inputtext';
 import { ButtonModule } from 'primeng/button';
+
+import { MoneyHttpInterceptor } from './money-http-interceptor';
 
 import { LoginFormComponent } from './login-form/login-form.component';
 
 import { SharedModule } from './../shared/shared.module';
 
 import { SegurancaRoutingModule } from './seguranca-routing.module';
+
+import { environment } from './../../environments/environment';
 
 export function tokenGetter(): string {
   return localStorage.getItem('token');
@@ -36,8 +38,8 @@ export function tokenGetter(): string {
     JwtModule.forRoot({
       config: {
         tokenGetter,
-        whitelistedDomains: ['localhost:8080'],
-        blacklistedRoutes: ['http://localhost:8080/oauth/token']
+        whitelistedDomains: [environment.url],
+        blacklistedRoutes: [`${environment.apiUrl}/oauth/token`]
       }
     }),
 
