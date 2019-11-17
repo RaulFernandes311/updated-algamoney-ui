@@ -6,6 +6,7 @@ import { Table } from 'primeng/table';
 
 import { PessoaFiltro, PessoaService } from '../pessoa.service';
 import { ToastService } from './../../shared/toast.service';
+import { AuthService } from './../../seguranca/auth.service';
 import { ErrorHandlerService } from 'src/app/core/error-handler.service';
 
 @Component({
@@ -31,6 +32,7 @@ export class PessoasPesquisaComponent implements OnInit {
   ];
 
   constructor(
+    public auth: AuthService,
     private pessoaService: PessoaService,
     private confirmation: ConfirmationService,
     private toast: ToastService,
