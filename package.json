@@ -22,7 +22,7 @@
     "@angular/platform-browser-dynamic": "~8.1.2",
     "@angular/router": "~8.1.2",
     "@auth0/angular-jwt": "^3.0.1",
-    "moment": "^2.24.0",
+    "moment": "^2.29.4",
     "ngx-currency": "^2.0.0",
     "primeicons": "^1.0.0",
     "primeng": "^8.0.1",
